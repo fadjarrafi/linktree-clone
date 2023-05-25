@@ -73,7 +73,7 @@ function LinkCard({href, title, image}: {href: string; title:string; image?: str
 
 export default function Home() {
   return (
-    <div className='flex items-center flex-col mx-auto w-full justify-center mt-16 px-8'>
+    <div className='flex items-center flex-col mx-auto w-full justify-center mt-16 px-8 text-white'>
       <Image
         className='rounded-full'
         alt={data.name}
@@ -104,6 +104,8 @@ export default function Home() {
           </a>
         ))}
       </div>
+
+      <div className="flex items-center gap-4 mt-8 text-white">Made with &#10084; using NextJS + React + Tailwind</div>
     </div>
   );
 }
