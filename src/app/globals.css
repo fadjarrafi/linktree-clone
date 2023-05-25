@@ -2,26 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    height: 100vh;
+    background-image: linear-gradient(45deg,
+    hsl(0deg 0% 8%) 0%,
+    hsl(233deg 10% 10%) 9%,
+    hsl(231deg 18% 11%) 18%,
+    hsl(230deg 26% 13%) 26%,
+    hsl(228deg 32% 14%) 35%,
+    hsl(226deg 38% 16%) 43%,
+    hsl(231deg 43% 20%) 52%,
+    hsl(239deg 41% 25%) 61%,
+    hsl(251deg 46% 29%) 72%,
+    hsl(263deg 52% 32%) 84%,
+    hsl(275deg 61% 33%) 100%);
 }
