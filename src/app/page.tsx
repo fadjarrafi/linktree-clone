@@ -1,5 +1,9 @@
 import Image from 'next/image';
-import data from '../../data.json';
+import { get } from '@vercel/edge-config';
+import { redirect } from 'next/navigation';
+
+export const dynamic = 'force-dynamic',
+  runtime = 'edge';
 
 function TwitterIcon() {
   return (
@@ -49,9 +53,9 @@ function GitHubIcon() {
   );
 }
 
-function LinkCard({href, title, image}: {href: string; title:string; image?: string}) {
+function LinkCard({href, title, image}: {href: string; title: string; image?: string}) {
   return (
-    <a href={href} className='flex items-center p-1 w-full rounded-md hover:scale-105 transition-all bg-gray-100 mb-3 max-w-3xl'>
+    <a href={href} target="_blank" rel="noopener noreferrer" className='flex items-center p-1 w-full rounded-md hover:scale-105 transition-all bg-gray-100 mb-3 max-w-3xl'>
 
       <div className="flex text-center w-full">
         <div className="w-10">
@@ -71,22 +75,45 @@ function LinkCard({href, title, image}: {href: string; title:string; image?: str
   )
 }
 
-export default function Home() {
-  return (
-    <div className='flex items-center flex-col mx-auto w-full justify-center mt-16 px-8 text-white'>
+interface Data {
+  name: string;
+  avatar: string;
+  links: Link[];
+  socials: Social[];
+}
+
+interface Link {
+  href: string;
+  title: string;
+  image?: string;
+}
+
+interface Social {
+  href: string;
+  title: string;
+}
+
+export default async function HomePage() {
+  const data: Data | undefined = await get('linktree');
+
+  if (!data) {
+    redirect('https://youtu.be/BBJa32lCaaY');
+  }
+
+   return (
+    <div className="flex items-center flex-col mx-auto w-full justify-center mt-16 px-8">
       <Image
-        className='rounded-full'
+        priority
+        className="rounded-full"
         alt={data.name}
         src={data.avatar}
-        width={90}
-        height={90}
+        width={96}
+        height={96}
       />
-
-      <h1 className="font-semibold mt-4 mb-8 text-2xl">{data.name}</h1>
+      <h1 className="font-bold mt-4 mb-8 text-xl text-white">{data.name}</h1>
       {data.links.map((link) => (
         <LinkCard key={link.href} {...link} />
       ))}
-
       <div className="flex items-center gap-4 mt-8 text-white">
         {data.socials.map((social) => (
           <a
@@ -104,8 +131,6 @@ export default function Home() {
           </a>
         ))}
       </div>
-
-      <div className="flex items-center gap-4 mt-8 text-white">Made with &#10084; using NextJS + React + Tailwind</div>
     </div>
   );
 }
