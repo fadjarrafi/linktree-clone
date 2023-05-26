@@ -125,7 +125,28 @@ export default async function HomePage() {
         width={96}
         height={96}
       />
-      <h1 className="font-bold mt-4 mb-8 text-xl text-white">{data.name}</h1>
+      <h1 className="font-bold mt-4 mb-4 text-xl text-white">{data.name}</h1>
+
+      <ul className='flex items-center flex-col mb-8'>
+        <li><h1 className='font-semibold text-l text-white m-2'>💻 I’m  Web Developer</h1></li>
+        <li><h1 className='font-semibold text-l text-white m-2'>☕   With a perfect cup of coffee and a good metal music, you can beat any bugs</h1></li>
+      </ul>
+      <a
+      href="/donut"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center p-1 w-full rounded-md hover:scale-105 transition-all bg-gray-100 mb-3 max-w-3xl"
+    >
+      <div className="flex text-center w-full">
+        <div className="w-10 h-10">
+          
+        </div>
+        <h2 className="flex justify-center items-center font-semibold w-full text-gray-700 -ml-10">
+          FREE DONUT !!
+        </h2>
+      </div>
+    </a>
+
       {data.links.map((link) => (
         <LinkCard key={link.href} {...link} />
       ))}
