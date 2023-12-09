@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
     height: 100vh;
     background-image: linear-gradient(45deg,
     hsl(0deg 0% 8%) 0%,
@@ -16,4 +16,11 @@ body {
     hsl(251deg 46% 29%) 72%,
     hsl(263deg 52% 32%) 84%,
     hsl(275deg 61% 33%) 100%);
+} */
+
+body {
+    width: 100%;
+    background-image: url("https://i.gifer.com/4NB4.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
